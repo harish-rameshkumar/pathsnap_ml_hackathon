@@ -1,0 +1,10 @@
+experiment set (392657, 19) 0.11580845368858826
+LogisticRegression       cvLL=0.0926±0.0155 cvTop1=0.8845 | stud: top1=0.8746 F1=0.852 P=0.847 R=0.857 LL=0.0890 cont=0.764 fit=1.4s inf=0.02s
+GaussianNB               cvLL=0.7762±0.1171 cvTop1=0.8661 | stud: top1=0.8516 F1=0.664 P=0.510 R=0.952 LL=0.8505 cont=0.743 fit=0.0s inf=0.03s
+KNN(k=25,distance)       cvLL=0.1268±0.0226 cvTop1=0.8780 | stud: top1=0.8775 F1=0.868 P=0.877 R=0.859 LL=0.1159 cont=0.730 fit=0.1s inf=54.42s
+DecisionTree(d=10)       cvLL=0.0828±0.0223 cvTop1=0.8932 | stud: top1=0.8919 F1=0.884 P=0.880 R=0.888 LL=0.0701 cont=0.804 fit=3.9s inf=0.01s
+RandomForest(200)        cvLL=0.0633±0.0148 cvTop1=0.8990 | stud: top1=0.8949 F1=0.890 P=0.908 R=0.872 LL=0.0601 cont=0.819 fit=46.5s inf=0.80s
+ExtraTrees(200)          cvLL=0.0661±0.0132 cvTop1=0.8939 | stud: top1=0.8846 F1=0.880 P=0.911 R=0.850 LL=0.0647 cont=0.773 fit=11.6s inf=0.77s
+HistGradientBoosting     cvLL=0.0642±0.0166 cvTop1=0.8987 | stud: top1=0.8946 F1=0.890 P=0.889 R=0.892 LL=0.0655 cont=0.801 fit=4.5s inf=0.63s
+LightGBM(default-ish)    cvLL=0.0729±0.0194 cvTop1=0.8957 | stud: top1=0.8924 F1=0.889 P=0.884 R=0.894 LL=0.0753 cont=0.752 fit=2.8s inf=0.43s
+MLP(64,32)               cvLL=0.0728±0.0147 cvTop1=0.8911 | stud: top1=0.8891 F1=0.882 P=0.883 R=0.881 LL=0.0681 cont=0.794 fit=29.2s inf=0.04s
