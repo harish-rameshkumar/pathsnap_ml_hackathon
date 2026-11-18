@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>PathSnap Evaluator</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+ :root{color-scheme:light}
+ body{margin:0;font-family:system-ui,sans-serif;display:flex;height:100vh;background:#fff;color:#111}
+ #side{background:#fff;width:340px;padding:14px;overflow:auto;border-right:1px solid #ddd;box-sizing:border-box}
+ #map{flex:1}
+ h1{font-size:20px;margin:0 0 8px} input{width:100%;padding:6px;box-sizing:border-box}
+ button.trip{display:block;width:100%;text-align:left;padding:8px;margin:4px 0;border:1px solid #ccc;border-radius:6px;background:#fff;cursor:pointer}
+ button.trip.active{background:#e8f0ff;border-color:#4a7bd8}
+ table{border-collapse:collapse;width:100%;margin-top:8px;font-size:13px} td,th{border-bottom:1px solid #eee;padding:4px;text-align:right} td:first-child,th:first-child{text-align:left}
+ .big{font-size:28px;font-weight:600} .muted{color:#777;font-size:12px} #status{margin:8px 0;color:#555}
+</style></head><body>
+<div id="side">
+ <h1>PathSnap</h1>
+ <label class="muted">API URL (Laptop 1)</label>
+ <input id="api" value="http://localhost:8000">
+ <button class="trip" id="load" style="text-align:center;margin-top:6px">Load evaluation trips</button>
+ <div id="trips"></div><div id="status"></div><div id="result"></div>
+ <div class="muted">Blue dots: raw GPS. Red line: predicted route (classifier + HMM/Viterbi).</div>
+</div>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map=L.map('map').setView([20,0],2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+let layers=[]; const $=id=>document.getElementById(id); const api=()=>$('api').value.replace(/\/$/,'');
+const pct=x=>(100*x).toFixed(2)+'%';
+async function loadTrips(){
+  $('status').textContent='Loading trips…';
+  try{const r=await fetch(api()+'/trips');const ts=await r.json();
+    $('trips').innerHTML='';
+    ts.forEach(t=>{const b=document.createElement('button');b.className='trip';b.textContent='Trip '+t.trip_id;b.onclick=()=>run(t.trip_id,b);$('trips').appendChild(b)});
+    $('status').textContent=ts.length+' trips available';
+  }catch(e){$('status').textContent='Cannot reach API: '+e}
+}
+async function run(id,btn){
+  document.querySelectorAll('.trip').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  $('status').textContent='Running pipeline on server for '+id+'…';$('result').innerHTML='';
+  try{
+    const r=await fetch(api()+'/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({trip_id:id})});
+    if(!r.ok) throw new Error(await r.text()); const d=await r.json();
+    layers.forEach(l=>map.removeLayer(l));layers=[];
+    const pts=d.gps.map(p=>L.circleMarker(p,{radius:2,color:'#2563eb',weight:1,fillOpacity:.6}));
+    const g=L.layerGroup(pts).addTo(map);layers.push(g);
+    const line=L.polyline(d.route,{color:'#e11d48',weight:4,opacity:.85}).addTo(map);layers.push(line);
+    map.fitBounds(line.getBounds().extend(d.gps));
+    if(!d.metrics){$('status').textContent='Predicted (no reference available on server)';return}
+    const m=d.metrics,h=m.hmm,c=m.clf;
+    $('result').innerHTML=`<div class="big">${pct(h.pointwise_accuracy)}</div><div class="muted">pointwise accuracy (classifier + HMM)</div>
+     <table><tr><th></th><th>Classifier</th><th>+HMM</th></tr>
+     <tr><td>Pointwise accuracy</td><td>${pct(c.pointwise_accuracy)}</td><td>${pct(h.pointwise_accuracy)}</td></tr>
+     <tr><td>Route continuity</td><td>${pct(c.route_continuity)}</td><td>${pct(h.route_continuity)}</td></tr>
+     <tr><td>Route precision</td><td>${pct(c.route_precision)}</td><td>${pct(h.route_precision)}</td></tr>
+     <tr><td>Route recall</td><td>${pct(c.route_recall)}</td><td>${pct(h.route_recall)}</td></tr>
+     <tr><td>Route F1</td><td>${pct(c.route_f1)}</td><td>${pct(h.route_f1)}</td></tr></table>
+     <div class="muted">${d.n_gps} GPS points · ${d.n_route_arcs} route arcs · ${d.timing.total.toFixed(2)} s server time</div>`;
+    $('status').textContent='Done: trip '+id;
+  }catch(e){$('status').textContent='Error: '+e}
+}
+$('load').onclick=loadTrips;
+loadTrips().then(()=>{const q=new URLSearchParams(location.search);if(q.get('api'))$('api').value=q.get('api');const t=q.get('trip');if(t){const b=[...document.querySelectorAll('.trip')].find(x=>x.textContent.endsWith(t));if(b)b.click();}});
+</script></body></html>
