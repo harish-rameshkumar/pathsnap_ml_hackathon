@@ -24,6 +24,7 @@ python scripts/07_tuned_vs_untuned.py && python scripts/10_training_curves.py
 python scripts/06_visualise.py && python scripts/06b_folium_maps.py # route plots + interactive Folium maps
 python scripts/12_candidate_plots.py                                   # candidate-generation graphs
 EVAL_DIR=/path/to/evaluator_test python scripts/13_evaluator_run.py  # final evaluation on evaluator trips (after development)
+EVAL_DIR=/path/to/evaluator_test python scripts/14_rmf.py            # Route Mismatch Fraction (needs the trained model)
 python scripts/09_build_report.py                                    # builds report/PathSnap_Report.pdf (needs Google Chrome)
 ```
 Scripts 01-06 read `PATHSNAP_DATA` (default in `scripts/common.py` is a local path - set the variable).

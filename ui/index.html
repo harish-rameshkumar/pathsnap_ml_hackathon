@@ -61,5 +61,6 @@ async function run(id,btn){
   }catch(e){$('status').textContent='Error: '+e}
 }
 $('load').onclick=loadTrips;
-loadTrips().then(()=>{const q=new URLSearchParams(location.search);if(q.get('api'))$('api').value=q.get('api');const t=q.get('trip');if(t){const b=[...document.querySelectorAll('.trip')].find(x=>x.textContent.endsWith(t));if(b)b.click();}});
+const q=new URLSearchParams(location.search);if(q.get('api'))$('api').value=q.get('api');   // apply ?api= BEFORE the first load
+loadTrips().then(()=>{const t=q.get('trip');if(t){const b=[...document.querySelectorAll('.trip')].find(x=>x.textContent.endsWith(t));if(b)b.click();}});
 </script></body></html>
