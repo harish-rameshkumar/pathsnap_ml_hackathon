@@ -1,0 +1,19 @@
+2026-11-18 15:28:56,613 INFO Serving trips from /Users/harish/Desktop/untitled folder/evaluator_data/evaluator_test
+INFO:     Started server process [36511]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     10.8.120.144:60658 - "GET /health HTTP/1.1" 200 OK
+INFO:     10.8.120.144:60659 - "GET /trips HTTP/1.1" 200 OK
+INFO:     10.8.120.179:63687 - "GET /health HTTP/1.1" 200 OK
+INFO:     10.8.120.179:63687 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     10.8.120.179:57441 - "GET /trips HTTP/1.1" 200 OK
+INFO:     10.8.120.179:63408 - "GET /trips HTTP/1.1" 200 OK
+INFO:     10.8.120.179:49668 - "OPTIONS /predict HTTP/1.1" 200 OK
+2026-11-18 15:38:34,487 INFO POST /predict trip_id=00000017 -> running pipeline
+2026-11-18 15:38:38,121 INFO trip 00000017 n_gps=1346 hmm_acc=0.9510 clf_acc=0.9465 cont=0.740 time=3.63s
+INFO:     10.8.120.179:53794 - "POST /predict HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36511]
