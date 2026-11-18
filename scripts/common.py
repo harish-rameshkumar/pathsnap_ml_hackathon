@@ -1,7 +1,9 @@
 import os, sys, pickle, numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
-DATA_ROOT = os.environ.get("PATHSNAP_DATA", "/Users/harish/Desktop/untitled folder/Student folder")
+# Dataset folder (contains train/ and student_test/). Override with the PATHSNAP_DATA environment variable;
+# default is <project>/data, so copying or symlinking the dataset there needs no configuration.
+DATA_ROOT = os.environ.get("PATHSNAP_DATA", os.path.join(ROOT, "data"))
 MISS_EXCLUDE = 0.30   # trips whose reference route doesn't match the GPS are excluded from fitting
 
 

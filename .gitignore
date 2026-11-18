@@ -2,3 +2,4 @@ artifacts/dataset.pkl
 __pycache__/
 report/PathSnap_Report.html
 .DS_Store
+data

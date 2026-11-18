@@ -27,7 +27,7 @@ EVAL_DIR=/path/to/evaluator_test python scripts/13_evaluator_run.py  # final eva
 EVAL_DIR=/path/to/evaluator_test python scripts/14_rmf.py            # Route Mismatch Fraction (needs the trained model)
 python scripts/09_build_report.py                                    # builds report/PathSnap_Report.pdf (needs Google Chrome)
 ```
-Scripts 01-06 read `PATHSNAP_DATA` (default in `scripts/common.py` is a local path - set the variable).
+Scripts read the dataset location from `PATHSNAP_DATA`; if it is not set they use `<project>/data` (copy or symlink the dataset folder, containing `train/` and `student_test/`, to `data/`). `data/` is git-ignored.
 The API needs only `artifacts/model.joblib` and `artifacts/hmm_config.json`, both committed, so steps above are not required to run it.
 
 ## Final evaluation
