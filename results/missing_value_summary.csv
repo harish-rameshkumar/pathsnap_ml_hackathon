@@ -1,0 +1,3 @@
+part,trips,raw_rows,nan_rows,out_of_order_steps,isolated_nodes,trips_with_gap_gt10s,median_pct_1s
+student_test,10,19160,0,0,0,2,0.9993230606354611
+train,80,208417,0,0,0,40,0.9909792227540838
