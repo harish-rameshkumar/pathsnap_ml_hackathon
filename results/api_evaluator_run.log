@@ -1,0 +1,41 @@
+2026-11-18 15:20:23,341 INFO Serving trips from /Users/harish/Desktop/untitled folder/evaluator_data/evaluator_test
+INFO:     Started server process [36187]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:60581 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60583 - "GET /trips HTTP/1.1" 200 OK
+2026-11-18 15:20:29,068 INFO POST /predict trip_id=00000015 -> running pipeline
+2026-11-18 15:20:31,108 INFO trip 00000015 n_gps=6854 hmm_acc=0.8799 clf_acc=0.8661 cont=0.562 time=2.04s
+INFO:     127.0.0.1:60585 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:20:31,146 INFO POST /predict trip_id=00000017 -> running pipeline
+2026-11-18 15:20:34,776 INFO trip 00000017 n_gps=1346 hmm_acc=0.9510 clf_acc=0.9465 cont=0.740 time=3.63s
+INFO:     127.0.0.1:60587 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:20:34,859 INFO POST /predict trip_id=00000023 -> running pipeline
+2026-11-18 15:20:35,049 INFO trip 00000023 n_gps=458 hmm_acc=0.9563 clf_acc=0.9454 cont=0.864 time=0.19s
+INFO:     127.0.0.1:60589 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:20:35,069 INFO POST /predict trip_id=00000030 -> running pipeline
+2026-11-18 15:20:35,800 INFO trip 00000030 n_gps=654 hmm_acc=0.8502 clf_acc=0.8180 cont=0.763 time=0.73s
+INFO:     127.0.0.1:60591 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:20:35,827 INFO POST /predict trip_id=00000049 -> running pipeline
+2026-11-18 15:20:36,603 INFO trip 00000049 n_gps=2642 hmm_acc=0.9992 clf_acc=0.9921 cont=0.960 time=0.78s
+INFO:     127.0.0.1:60593 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:20:36,629 INFO POST /predict trip_id=00000059 -> running pipeline
+2026-11-18 15:20:37,910 INFO trip 00000059 n_gps=1031 hmm_acc=0.9699 clf_acc=0.9641 cont=0.796 time=1.28s
+INFO:     127.0.0.1:60595 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:20:37,945 INFO POST /predict trip_id=00000067 -> running pipeline
+2026-11-18 15:20:38,223 INFO trip 00000067 n_gps=916 hmm_acc=0.9618 clf_acc=0.9618 cont=0.889 time=0.28s
+INFO:     127.0.0.1:60597 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:20:38,243 INFO POST /predict trip_id=00000073 -> running pipeline
+2026-11-18 15:20:38,737 INFO trip 00000073 n_gps=1144 hmm_acc=0.9860 clf_acc=0.9860 cont=0.957 time=0.49s
+INFO:     127.0.0.1:60599 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:20:38,760 INFO POST /predict trip_id=00000087 -> running pipeline
+2026-11-18 15:20:39,411 INFO trip 00000087 n_gps=1399 hmm_acc=0.9936 clf_acc=0.9557 cont=0.966 time=0.65s
+INFO:     127.0.0.1:60601 - "POST /predict HTTP/1.1" 200 OK
+2026-11-18 15:20:39,435 INFO POST /predict trip_id=00000094 -> running pipeline
+2026-11-18 15:20:40,988 INFO trip 00000094 n_gps=3230 hmm_acc=0.9300 clf_acc=0.9449 cont=0.839 time=1.55s
+INFO:     127.0.0.1:60603 - "POST /predict HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36187]
